@@ -16,11 +16,11 @@
 * [X]Ai-je noté le nombre de lignes et colonnes du dataset ?
     - (5644, 111)
 
+* [X]Les types de variables sont-ils bien identifiés (numériques, catégorielles...) ? (sns.pie and value_counts)
+    -   Numérique pour la plupart sauf pour le résultat test et l' ID
+
 * [X]Ai-je repéré les valeurs manquantes ?
     - La plupart des colonnes à partir de la 7eme lorsque la personne est négative
-
-* [X]Les types de variables sont-ils bien identifiés (numériques, catégorielles...) ?
-    -   Numérique pour la plupart sauf pour le résultat test et l' ID
 
 
 **II - Analyse du fond :**
