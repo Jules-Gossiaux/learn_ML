@@ -26,8 +26,9 @@
 **II - Analyse du fond :**
 
 * Ai-je visualisé la distribution de la target (histogramme, boxplot) ?
-    - 
+    - 10% positive test => Classes pas équilibrées => utiliser score F1
 * Est-ce que je comprends bien la signification de chaque variable ?
+    - 
 * Ai-je exploré les relations entre les features et la target ?
 * Ai-je identifié les valeurs aberrantes (outliers) ?
 
