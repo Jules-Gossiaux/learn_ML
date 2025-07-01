@@ -28,7 +28,6 @@
 * Ai-je visualisé la distribution de la target (histogramme, boxplot) ?
     - 10% positive test => Classes pas équilibrées => utiliser score F1
 * Est-ce que je comprends bien la signification de chaque variable ?
-    - 
 * Ai-je exploré les relations entre les features et la target ?
 * Ai-je identifié les valeurs aberrantes (outliers) ?
 
@@ -36,15 +35,22 @@
 
 📋 **Pre-processing** `video 29/30`
 
+
+![alt text](image.png)
 Objectif : Préparer les données pour les algorithmes de machine learning.
 
-* Ai-je séparé les données en Train Set et Test Set ?
-* Les valeurs manquantes (NaN) ont-elles été traitées (suppression ou imputation) ?
-* Ai-je encodé les variables catégorielles ?
-* Les outliers problématiques ont-ils été traités ou supprimés ?
-* Ai-je sélectionné les variables les plus utiles (feature selection) ?
-* Ai-je créé de nouvelles variables pertinentes (feature engineering) ?
-* Les variables numériques sont-elles mises à l’échelle (normalisation / standardisation) ?
+#### 1. Mettre les données dans un format propice au ML
+* Train / Test
+* Encodage
+* Nettoyage des NaN
+
+→ **Premier modèle : Évaluation – Diagnostique**
+
+#### 2. Améliorer la performance du modèle
+* Feature Selection
+* Feature Engineering
+* Feature Scaling
+* Suppression des Outliers
 
 ---
 
