@@ -58,12 +58,10 @@ Objectif : Préparer les données pour les algorithmes de machine learning.
 
 Objectif : Construire un modèle capable d’atteindre l’objectif défini.
 
-* Ai-je choisi une fonction d’évaluation adaptée (F1, Recall, etc.) ?
-* Ai-je testé plusieurs types de modèles ?
-* Ai-je utilisé GridSearchCV ou une autre méthode pour optimiser les hyperparamètres ?
-* Ai-je analysé les erreurs du modèle ?
-* Suis-je revenu à l’étape de preprocessing ou EDA si nécessaire ?
-* Ai-je étudié les courbes d’apprentissage (learning curves) pour prendre des décisions éclairées ?
+1) Entrainer et évaluer une liste de modeles avec les reglages de base (pipelines)
+2) Retenir les 2-3 modeles avec le meilleur score de test, en privilégiant les situations de non-overfitting
+3) Optimiser les hyper-parametres de ces modeles avec un tour GridSearchCV, puis un tour RandomizedSearchCV
+4) régler un threshold pour obtenir le recall ou la précision désiré
 
 
 
