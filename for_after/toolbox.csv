@@ -1,0 +1,107 @@
+Section,Category,FunctionName,Function,Code,Description
+All,Imports,Imports standards,import,"import numpy as np, pandas as pd, matplotlib.pyplot as plt, seaborn as sns",Imports de base pour data science
+All,Imports,Imports scipy,from,"from scipy.stats import ttest_ind",Tests statistiques
+All,Imports,Imports sklearn,import,"model_selection, preprocessing, pipeline, metrics, feature_selection, ensemble",Imports complets sklearn
+All,Setup,Reset pandas options,pd.reset_option,"pd.reset_option('display.max_rows')",Réinitialiser affichage pandas
+All,Setup,Encodage fichier,pd.read_csv,"pd.read_csv('file.csv', encoding='latin1')",Gérer caractères spéciaux
+All,Setup,Copie sécurisée,df.copy,"df = data.copy()",Éviter modification données originales
+All,Python,List comprehension,list_comprehension,"[i**2 for i in range(10)]",Créer listes efficacement
+All,Python,Dict comprehension,dict_comprehension,"{k: v for k, v in dict.items() if condition}",Filtrer/transformer dictionnaires
+All,Python,String formatting,f_string,"f'il fait {temp} degrés à {ville}'",Formater chaînes
+All,Python,Gestion fichiers,with open,"with open('file.txt', 'r') as f:",Ouvrir/fermer automatiquement
+All,Python,Fonctions utiles,built_in_functions,"abs(), round(), max(), min(), len(), sum(), all(), any()",Fonctions Python essentielles
+EDA,Analyse forme,Dimensions dataset,df.shape,"df.shape",Connaître lignes et colonnes
+EDA,Analyse forme,Types variables,df.dtypes.value_counts,"df.dtypes.value_counts()",Compter les types
+EDA,Analyse forme,Visualisation types,plt.pie,"plt.pie(df.dtypes.value_counts(), autopct='%1.1f%%')",Voir répartition types
+EDA,Analyse forme,Informations générales,df.info,"df.info()",Aperçu complet dataset
+EDA,Analyse forme,Noms colonnes,df.columns,"df.columns",Lister colonnes
+EDA,Analyse forme,Aperçu données,df.head,"df.head(), df.tail()",Voir début/fin données
+EDA,Valeurs manquantes,Heatmap NaN,sns.heatmap,"sns.heatmap(df.isna(), cbar=False, figsize=(20, 10))",Visualiser patterns NaN
+EDA,Valeurs manquantes,Pourcentage NaN,df.isna,"(df.isna().sum() / df.shape[0]).sort_values(ascending=False)",Trier par taux NaN
+EDA,Valeurs manquantes,Statistiques NaN,df.isna,"((df.isna().sum() / df.shape[0]) > 0.90).sum()",Compter colonnes >90% NaN
+EDA,Valeurs manquantes,Suppression colonnes NaN,df.loc,"df.loc[:, df.isna().sum()/df.shape[0] < 0.90]",Garder colonnes <90% NaN
+EDA,Valeurs manquantes,Groupement taux NaN,df.isna,"missing_rate = df.isna().sum() / df.shape[0]",Identifier groupes colonnes
+EDA,Exploration variables,Sélection par type,df.select_dtypes,"df.select_dtypes('float')",Sélectionner colonnes numériques
+EDA,Exploration variables,Distribution numériques,sns.displot,"sns.displot(df[col])",Distribution variables numériques
+EDA,Exploration variables,Valeurs uniques catégorielles,df.unique,"df[col].unique()",Explorer modalités
+EDA,Exploration variables,Distribution catégorielles,df.value_counts,"df.value_counts(col).plot.pie()",Visualiser proportions
+EDA,Exploration variables,Comptage valeurs,df.value_counts,"df[col].value_counts(normalize=True)",Fréquences relatives
+EDA,Exploration variables,Statistiques descriptives,df.describe,"df.describe()",Résumé statistique
+EDA,Relations,Comparaison groupes,sns.histplot,"sns.histplot(kde=True, alpha=0.5, stat='density')",Comparer distributions
+EDA,Relations,Matrice corrélation,sns.heatmap,"sns.heatmap(df.corr()), sns.clustermap(df.corr())",Voir corrélations
+EDA,Relations,Relations catégorielles,pd.crosstab,"pd.crosstab() avec sns.heatmap(annot=True, fmt='d')",Tableaux croisés
+EDA,Relations,Graphiques par groupes,sns.countplot,"sns.countplot(x='var', hue='target', data=df)",Comparer distributions
+EDA,Relations,Pairplot,sns.pairplot,"sns.pairplot(df)",Relations toutes variables numériques
+EDA,Relations,Corrélation linéaire,sns.lmplot,"sns.lmplot(x='var1', y='var2', hue='target', data=df)",Relations linéaires
+EDA,Sous-ensembles,Filtrage condition,boolean_indexing,"positive_df = df[df['target'] == 'positive']",Créer sous-groupes
+EDA,Sous-ensembles,Groupement missing rate,boolean_indexing,"blood_columns = df.columns[(missing_rate < 0.90) & (missing_rate > 0.89)]",Grouper par taux NaN
+EDA,Sous-ensembles,Variable composite,np.sum,"df['malade'] = np.sum(df[viral_columns] == 'detected', axis=1)",Compter occurrences
+EDA,Tests statistiques,Test t Student,ttest_ind,"ttest_ind(group1.dropna(), group2.dropna())",Comparer moyennes
+EDA,Tests statistiques,Équilibrage échantillons,df.sample,"df.sample(n, random_state=42)",Créer échantillons équilibrés
+EDA,Visualisations,Boucles visualisation,for,"for col in df.select_dtypes('float'): sns.displot(df[col])",Automatiser visualisations
+EDA,Visualisations,Comparaison multi-groupes,sns.histplot,"histogrammes superposés avec transparence",Comparer plusieurs groupes
+Preprocessing,Préparation,Copie travail,df.copy,"df1 = data.copy()",Préserver données originales
+Preprocessing,Préparation,Sélection colonnes,df[],"df1[key_columns + list(blood_columns)]",Sélection stratégique
+Preprocessing,Préparation,Suppression colonnes,df.drop,"df.drop('Patient ID', axis=1)",Enlever identifiants
+Preprocessing,Préparation,Listes colonnes,list,"key_columns = ['col1', 'col2']",Organiser features
+Preprocessing,Split données,Division train/test,train_test_split,"train_test_split(df, test_size=0.2, random_state=0)",Séparer données
+Preprocessing,Split données,Stratification,train_test_split,"train_test_split(X, y, stratify=y)",Préserver proportions classes
+Preprocessing,Split données,Vérification proportions,df.value_counts,"df['target'].value_counts()",S'assurer répartition
+Preprocessing,Encodage,Encodage mapping,df.map,"df[col].map({'positive': 1, 'negative': 0})",Convertir valeurs textuelles
+Preprocessing,Encodage,Label Encoder,LabelEncoder,"LabelEncoder()",Variable cible
+Preprocessing,Encodage,One-Hot Encoder,OneHotEncoder,"OneHotEncoder()",Variables catégorielles nominales
+Preprocessing,Encodage,Ordinal Encoder,OrdinalEncoder,"OrdinalEncoder()",Variables catégorielles ordinales
+Preprocessing,Feature Engineering,Variables composites,df.sum,"df['new_var'] = df[viral_columns].sum(axis=1) >= 1",Créer indicateurs
+Preprocessing,Feature Engineering,Variables binaires,boolean_comparison,"df['is_positive'] = df['value'] > 0",Créer indicateurs
+Preprocessing,Feature Engineering,Fonction apply,df.apply,"df.apply(custom_function, axis=1)",Transformations complexes
+Preprocessing,Valeurs manquantes,Suppression NaN,df.dropna,"df.dropna(axis=0)",Supprimer lignes NaN
+Preprocessing,Valeurs manquantes,Imputation simple,SimpleImputer,"SimpleImputer(strategy='mean')",Remplacer par moyenne
+Preprocessing,Valeurs manquantes,Indicateur NaN,df.isna,"df['is_na'] = df.isna().any(axis=1)",Créer colonne indicatrice
+Preprocessing,Valeurs manquantes,Remplacement valeur,df.fillna,"df.fillna(-999)",Remplir par valeur spécifique
+Preprocessing,Normalisation,StandardScaler,StandardScaler,"StandardScaler()","Centrer/réduire (moyenne=0, écart-type=1)"
+Preprocessing,Normalisation,MinMaxScaler,MinMaxScaler,"MinMaxScaler()",Normaliser entre 0 et 1
+Preprocessing,Normalisation,RobustScaler,RobustScaler,"RobustScaler()",Standardisation robuste outliers
+Preprocessing,Pipeline,Séparation X/y,df.drop,"X = df.drop('target', axis=1), y = df['target']",Préparer modélisation
+Preprocessing,Pipeline,Vérification target,print,"print(y.value_counts())",Contrôler distribution finale
+Modelling,Feature Selection,SelectKBest,SelectKBest,"SelectKBest(f_classif, k=10)",Sélectionner k meilleures features
+Modelling,Feature Selection,SelectFromModel,SelectFromModel,"SelectFromModel(model)",Sélectionner selon importance modèle
+Modelling,Feature Selection,RFE,RFE,"RFE(estimator, n_features_to_select=5)",Élimination récursive
+Modelling,Feature Selection,RFECV,RFECV,"RFECV(estimator, cv=5)",RFE avec validation croisée
+Modelling,Feature Selection,VarianceThreshold,VarianceThreshold,"VarianceThreshold(threshold=0.01)",Supprimer faible variance
+Modelling,Pipelines,Pipeline base,make_pipeline,"make_pipeline(PolynomialFeatures(2), SelectKBest(f_classif, k=10), Model())",Enchaîner transformations
+Modelling,Pipelines,Pipeline preprocessing,make_pipeline,"make_pipeline(PolynomialFeatures(2, include_bias=False), SelectKBest(f_classif, k=10))",Pipeline réutilisable
+Modelling,Pipelines,Pipeline scaling,make_pipeline,"make_pipeline(preprocessor, StandardScaler(), KNeighborsClassifier())",Modèles sensibles échelle
+Modelling,Pipelines,Column Transformer,make_column_transformer,"make_column_transformer((pipeline, columns))",Traiter colonnes différemment
+Modelling,Modèles supervisés,Decision Tree,DecisionTreeClassifier,"DecisionTreeClassifier(random_state=0)",Arbre décision (baseline)
+Modelling,Modèles supervisés,Random Forest,RandomForestClassifier,"RandomForestClassifier(random_state=0)",Ensemble d'arbres
+Modelling,Modèles supervisés,SVM,SVC,"SVC(random_state=0)",Machines vecteurs support
+Modelling,Modèles supervisés,AdaBoost,AdaBoostClassifier,"AdaBoostClassifier(random_state=0)",Adaptive boosting
+Modelling,Modèles supervisés,Gradient Boosting,GradientBoostingClassifier,"GradientBoostingClassifier()",Boosting gradient
+Modelling,Modèles supervisés,KNN,KNeighborsClassifier,"KNeighborsClassifier()",Classification par voisins
+Modelling,Modèles supervisés,Régression linéaire,LinearRegression,"LinearRegression()",Problèmes régression
+Modelling,Comparaison,Dictionnaire modèles,dict,"{'RandomForest': pipeline1, 'SVC': pipeline2}",Comparer facilement
+Modelling,Comparaison,Comparaison systématique,for,"for name, model in dict_of_models.items()",Évaluer tous modèles
+Modelling,Comparaison,Ensemble methods,VotingClassifier,"VotingClassifier(), StackingClassifier()",Combiner modèles
+Modelling,Évaluation,Learning curves,learning_curve,"learning_curve(model, X, y, cv=4, train_sizes=np.linspace(0.1, 1.0, 10))",Détecter overfitting
+Modelling,Évaluation,Importance features,feature_importances_,"model.feature_importances_",Visualiser importance
+Modelling,Évaluation,Validation croisée,cross_val_score,"cross_val_score(model, X, y, cv=5)",Évaluation robuste
+Modelling,Métriques,Classification report,classification_report,"classification_report(y_true, y_pred)",Rapport complet
+Modelling,Métriques,Matrice confusion,confusion_matrix,"confusion_matrix(y_test, y_pred)",Erreurs détaillées
+Modelling,Métriques,Scores spécifiques,f1_score,"f1_score(), recall_score(), precision_score()",Métriques spécifiques
+Modelling,Hyperparamètres,Grid Search,GridSearchCV,"GridSearchCV(model, param_grid, cv=4, scoring='recall')",Recherche exhaustive
+Modelling,Hyperparamètres,Randomized Search,RandomizedSearchCV,"RandomizedSearchCV(model, param_grid, cv=4, scoring='recall', n_iter=50)",Recherche aléatoire
+Modelling,Hyperparamètres,Meilleurs paramètres,best_params_,"grid.best_params_, grid.best_estimator_",Récupérer optimaux
+Modelling,Seuil,Precision-Recall Curve,precision_recall_curve,"precision_recall_curve(y_true, y_score)",Analyser trade-off precision/recall
+Modelling,Seuil,Seuil personnalisé,decision_function,"model.decision_function(X) > threshold",Ajuster seuil classification
+Modelling,Seuil,Fonction finale,def,"def final_model(model, X, threshold=0)",Application seuil custom
+Modelling,Diagnostic,Analyse overfitting,comparison,"comparer train_score et val_score",Learning curve analysis
+Modelling,Diagnostic,Feature importance,pd.DataFrame,"pd.DataFrame(model.feature_importances_, index=X.columns)",Analyser importance
+Modelling,Non-supervisés,K-Means,KMeans,"KMeans(n_clusters=3)",Clustering
+Modelling,Non-supervisés,Isolation Forest,IsolationForest,"IsolationForest()",Détection anomalies
+Modelling,Non-supervisés,PCA,PCA,"PCA(n_components=2)",Réduction dimensionnalité
+Validation,Types CV,KFold,KFold,"KFold(n_splits=5)",Découpage k parties égales
+Validation,Types CV,StratifiedKFold,StratifiedKFold,"StratifiedKFold(n_splits=5)",Respecter proportions classes
+Validation,Types CV,LeaveOneOut,LeaveOneOut,"LeaveOneOut()",Validation leave-one-out
+Validation,Types CV,ShuffleSplit,ShuffleSplit,"ShuffleSplit(n_splits=5)",Mélange et découpage multiple
+Validation,CV personnalisée,TimeSeriesSplit,TimeSeriesSplit,"TimeSeriesSplit",Séries temporelles
+Validation,CV personnalisée,GroupKFold,GroupKFold,"GroupKFold(n_splits=5)",Groupes corrélés
